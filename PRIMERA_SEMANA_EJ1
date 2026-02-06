@@ -1,0 +1,50 @@
+# Escriba aquí las funciones solicitadas
+def filtrar(imagen, tupla):
+    unos = 0
+    ceros = 0
+    for numero in tupla:
+        if numero == 1:
+            unos += 1
+        if numero == 0:
+            ceros += 1
+   
+    if unos != 1 and ceros != 2 and len(tupla) != 3:
+            return None
+    return True
+
+def to_string_RGB(imagen, tupla):
+    primero, segundo, tercero = tupla
+    if filtrar(imagen, tupla) == True:
+        for i, fila in enumerate(imagen):
+            for j, tupla in enumerate(fila):
+                r, g, b = tupla
+                if primero == 0:
+                    r = 0
+                if segundo == 0:
+                    g = 0
+                if tercero == 0:
+                    b = 0
+                
+                imagen[i][j] = (r, g, b)
+                print([j]) #las filas son i, jota son el num de pixels(tupla)
+    return imagen
+
+if __name__ == "__main__":
+    imagen = [
+        [(255, 0, 0), (10, 125, 55), (255, 165, 0), (100, 20, 40)],
+        [(0, 0, 255), (128, 8, 128), (255, 0, 255), (122, 133, 0)],
+        [(255, 0, 5), (255, 165, 0), (77, 90, 255), (23, 146, 30)]
+    ]
+
+    filtrar(imagen, (0, 1, 0))
+    tupla = (0, 1, 0)
+    print(to_string_RGB(imagen, tupla))
+
+    """ Resultado esperado:
+    imagen = [
+        [(0, 0, 0), (0, 125, 0), (0, 165, 0), (0,  20, 0)],
+        [(0, 0, 0), (0,   8, 0), (0,   0, 0), (0, 133, 0)],
+        [(0, 0, 0), (0, 165, 0), (0,  90, 0), (0, 146, 0)]
+    ]
+    """
+
