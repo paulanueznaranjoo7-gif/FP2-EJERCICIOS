@@ -1,0 +1,28 @@
+class Rectangle: 
+    def __init__(self, base, height): #inicializa una clase, definimos una serie de variables ue puede definir un rectangulo
+        self.base = base
+        self.height = height
+        """ Calculate area"""
+    
+    def area(self):
+        return self.base * self.height
+        
+rec = Rectangle(3,5)
+print (rec.(area))
+
+import math
+class Circle:
+    def __init__(self, radio):
+        self.radio = radio
+        """Calculate Area"""
+    
+    def area_circulo(self):
+        return math.pi * self.radio**2
+        
+circulo = Circle(6)
+print(circulo.area_circulo())
+    
+    def __repr__(self): #Representacion formal de nuestra clase, informaion del objeto obtener
+        return f"Circle(radius={self.radio})"
+    def __str__(self):
+        return f"Circle, radio={self.radio}"
