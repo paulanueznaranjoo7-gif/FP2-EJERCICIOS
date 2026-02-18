@@ -1,0 +1,35 @@
+class Numeral:
+    def __init__(self, value, sign):
+        self.__value = value #poneindi dos barras ponemis qy este atributo es privada, barra abaja normal no es que lo hagas pribvado, sino que no recomiend usarlo
+    
+    def __str__(self):
+        print(f"Numeral(value={self.value})")
+        
+        
+numero = Numeral(4, 2)
+print(numero.value) 
+# pueso poner print(n.Numeral__value) para ver el atributo
+
+def get_value(self): #el getter nos permite acceder a un atributo de una clase
+    return self.__value 
+
+def get_sign(self):
+    return self.__sign
+    
+print(numero.get_value())
+print(numero.get_sign())
+
+# setter nos permite coger el atributo a modificar y asignarlo, al get no se le pasa el valor y al set si
+
+def set_value(self, value):
+    if value > 0:
+        raise ValueError("El numeral no puede ser negativo")
+    self.__value = value
+numero.set_value(6)
+
+def __square_root(self):
+    return self.__value ** 1/2
+
+
+#Ahora solo quiero que los values que me pasen sean positicvos linea  25
+#Hacer metidos privados linea 30
