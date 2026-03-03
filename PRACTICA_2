@@ -1,1 +1,66 @@
+class Rectangulo:
 
+    def __init__(self, pto_izq_inf, pto_der_sup):
+
+        # Validación del rectángulo
+        if pto_der_sup.x <= pto_izq_inf.x or pto_der_sup.y <= pto_izq_inf.y:
+            raise BadRectangle("Rectángulo erróneo")
+
+        self.pto_izq_inf = pto_izq_inf
+        self.pto_der_sup = pto_der_sup
+
+
+    @property
+    def ini(self):
+        return self.pto_izq_inf
+
+
+    @ini.setter
+    def ini(self, punto):
+        if punto.x > self.pto_der_sup.x or punto.y > self.pto_der_sup.y:
+            raise BadRectangle("este punto no coincide")
+        self.pto_izq_inf = punto
+
+
+    @property
+    def fin(self):
+        return self.pto_der_sup
+
+
+    @fin.setter
+    def fin(self, punto):
+        if punto.x < self.pto_izq_inf.x or punto.y < self.pto_izq_inf.y:
+            raise BadRectangle("este punto no coincide")
+        self.pto_der_sup = punto
+
+
+    def esta_contenido(self, punto):
+        if not isinstance(punto, Punto):
+            return False
+
+        return (self.ini.x <= punto.x <= self.fin.x and
+                self.ini.y <= punto.y <= self.fin.y)
+
+
+    def __str__(self):
+        return f"<{self.pto_izq_inf.get_str()}, {self.pto_der_sup.get_str()}>"
+
+
+
+# NO MODIFIQUE EL CODIGO DEBAJO DE ESTA LINEA
+
+class Punto:
+    """Punto con dos propiedades x e y."""
+
+    def __init__(self, x, y):
+        """Inicializa punto."""
+        self.x = x
+        self.y = y
+
+    def get_str(self):
+        """Devuelve punto como str."""
+        return f"({self.x}, {self.y})"
+
+
+class BadRectangle(Exception):
+    """Exception for BadRectangle."""
