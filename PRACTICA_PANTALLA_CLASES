@@ -1,0 +1,44 @@
+class Pantalla:
+    resoluciones = [(800, 600), (1024, 768)]
+    def __init__(self, ancho, alto):
+        self.ancho = ancho
+        self.alto = alto
+        self.resolucion = (self.ancho, self.alto)
+    
+    @classmethod
+    def nueva_resolucion(cls, resolucion):
+        if len(resolucion) != 2:
+            raise ValueError("nueva resolucion")
+        for elemento in resolucion:
+            if not isinstance(elemento, int):
+                raise ValueError("nueva resolucion")
+
+    
+    @property
+    def resolucion(self):
+        return self._resolucion
+    
+    @resolucion.setter
+    def resolucion(self, valores):
+        if valores not in Pantalla.resoluciones:
+            raise ValueError("resolución no valida")
+        self._resolucion = valores
+        return valores
+       
+
+
+
+
+
+
+if __name__ == "__main__":
+    p = Pantalla(800, 600)
+    print(p.resolucion)
+
+    Pantalla.nueva_resolucion((1280, 720))
+    
+    p.resolucion = (1024, 768)
+    print(p.resolucion)
+
+    p.resolucion = (500, "h")
+    print(p.resolucion)
