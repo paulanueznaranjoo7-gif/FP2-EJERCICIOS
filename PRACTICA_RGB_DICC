@@ -1,0 +1,46 @@
+
+class ColorRGB:
+    nombres = {"rojo": (),
+        "verde": (),
+        "azul": ()
+    }
+    
+    @classmethod
+    def establece_nombre(cls, color, nombre):
+        tupla = nombre[color]
+        contar_nums = 0
+        for num in tupla:
+            contar_nums += 1
+        if contar_nums != 3:
+            raise TypeError("color")
+        if contar_nums == 3 and not isinstance (nombre, str):
+            raise TypeError("nombre")
+            
+    @property
+    def nombre(self):
+        color = (self.red, self.green, self.blue)
+        if color in ColorRGB.nombres:
+            color_name = ColorRGB.nombres[color]
+            return ColorRGB.nombres[color]
+        return "desconocido"
+
+            
+            
+            
+    
+    def __init__(self, red, green, blue):
+        """Inicializa un objetos con valores para red, green y blue."""
+        self.red = red
+        self.green = green
+        self.blue = blue
+
+    def __str__(self):
+        """Representación informal colorRGB."""
+        color = (self.red, self.green, self.blue)
+        return f"{color}"
+
+
+if __name__ == "__main__":
+    c = ColorRGB(0, 0, 0)
+    print(c)
+    print(c.nombre)
