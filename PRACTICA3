@@ -1,0 +1,47 @@
+"""Clase a modificar para el ejercicio."""
+
+class Botella:
+    """Representa una botella con una determinada capacidad y contenido."""
+    capacidades: dict = {}
+    
+    def __init__(self, capacidad, contenido):
+        """Inicializa una botella con una capacidad y contenido dados."""
+        self.__capacidad = capacidad
+        self.__contenido = contenido
+        
+        if capacidad in self.capacidades:
+            self.capacidades[capacidad] += 1
+        self.capacidades[capacidad] = 1
+        
+
+    @property
+    def capacidad(self):
+        """Devuelve la capacidad del objeto."""
+        return self.__capacidad
+
+    @property
+    def contenido(self):
+        """Contenido del objeto."""
+        return self.__contenido
+    
+    @contenido.setter
+    def contenido(self, new_content):
+        if new_content:
+            self.__contenido = new_content
+    
+    @classmethod
+    def botellas_capacidad(cls, capacidad):
+        if capacidad in Botella.capacidades:
+            return cls.capacidades[capacidad]
+        return 0
+
+
+if __name__ == "__main__":
+    b = Botella(500, 450)
+    print(b.capacidad, b.contenido)
+    print(b.botellas_capacidad(500))
+    print(b.botellas_capacidad(600))
+    Botella(500, 450)
+    Botella(600, 450)
+    print(b.botellas_capacidad(500))
+    print(b.botellas_capacidad(600))
