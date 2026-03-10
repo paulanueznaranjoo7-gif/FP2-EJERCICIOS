@@ -1,0 +1,74 @@
+class Pelicula:
+    peliculas_totales = 0
+    peliculas = []
+    
+    def __init__(self, titulo, duracion):
+        self._titulo = titulo
+        self._duracion = duracion
+        self._espectadores = 0
+        
+        Pelicula.peliculas_totales += 1
+        
+        Pelicula.peliculas.append(self)
+        
+    @property
+    def titulo(self):
+        return self._titulo
+    
+    @property
+    def duracion(self):
+        return self._duracion
+    
+    @property
+    def espectadores(self):
+        return self._espectadores
+    
+    def entrar_espectadores(self, cantidad):
+        if cantidad > 0:
+            self._espectadores += cantidad
+        else: 
+            raise ValueError
+        
+    def salir_espectadores(self, cantidad):
+        if cantidad < 0:
+            self.espectadores -= cantidad
+            if self.espectadores < 0:
+                raise ValueError
+    @classmethod
+    def total_peliculas(cls):
+        return cls.peliculas_totales
+    
+    @classmethod
+    def pelicula_mas_vista(cls):
+        max = 0
+        maximo = ""
+        for peli in cls.peliculas:
+            if peli.espectadores > max:
+                max = peli.espectadores
+                maximo = peli
+        return maximo
+                
+    def __str__(self):
+        return f"{self.titulo} - {self.espectadores} espectadores - {self._duracion} minutos"
+    
+
+
+
+
+p1 = Pelicula("Avatar", 120)
+p2 = Pelicula("Dune", 150)
+p3 = Pelicula("Batman", 130)
+
+p1.entrar_espectadores(50)
+p1.entrar_espectadores(30)
+
+p2.entrar_espectadores(40)
+
+p3.entrar_espectadores(90)
+
+print(p1)
+print(p2)
+print(p3)
+
+print("Total películas:", Pelicula.total_peliculas())
+print("Más vista:", Pelicula.pelicula_mas_vista().titulo)
