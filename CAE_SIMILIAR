@@ -1,0 +1,27 @@
+class TarjetaCliente:
+    contador = 9
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self._codigo = f"CL-{TarjetaCliente.contador:06d}"
+        
+        TarjetaCliente.contador += 1
+    
+    @property
+    def codigo(self):
+        return self._codigo
+    
+    def __str__(self):
+        return f"{self._codigo} - {self.nombre}"
+    
+
+
+
+
+c1 = TarjetaCliente("Ana")
+c2 = TarjetaCliente("Luis")
+c3 = TarjetaCliente("Marta")
+
+print(c1)
+print(c2)
+print(c3)
+   
