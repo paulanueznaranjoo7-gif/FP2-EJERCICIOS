@@ -1,0 +1,68 @@
+class TarjetaTransporte:
+    total_tarjetas = 0
+    contador = 1
+    total_viajes = 0
+    viajes = []
+    def __init__(self, titular):
+        self.__titular = titular
+        self.__saldo = 0
+        self.__viajes_realizados = 0
+        self.__numero_tarjeta = f"TT-1{TarjetaTransporte.contador:06d}"
+        
+        TarjetaTransporte.contador += 1
+        TarjetaTransporte.total_tarjetas += 1
+        TarjetaTransporte.viajes.append(self)
+
+            
+            
+        
+ 
+    @property
+    def numero_tarjeta(self):
+        return self.__numero_tarjeta
+        
+    @property
+    def titular(self):
+        return self.__titular
+    
+    @property
+    def saldo(self):
+        return self.__saldo
+    
+    @property
+    def viajes_realizados(self):
+        return self.__viajes_realizados
+    
+    def recargar(self, cantidad):
+        if cantidad < 0:
+            raise ValueError
+        else:
+            self.__saldo += cantidad
+    
+    def viajar(self, costo_viaje):
+        if costo_viaje < 0:
+            raise ValueError
+        if self.__saldo < 0:
+            raise ValueError
+        else:
+            self.__saldo -= costo_viaje
+            self.__viajes_realizados += 1
+            
+    @classmethod   
+    def total_tarjetas_emitidas(cls):
+        return cls.total_tarjetas
+    
+    @classmethod
+    def viajes_titular(cls, nombre_titular):
+        total = 0
+        for tarjeta in cls.viajes:
+            if tarjeta.titular == nombre_titular:
+                total += tarjeta.viajes_realizados
+            return total
+    
+        
+        
+    def __str__(self):
+        return f"<{self.__numero_tarjeta}> - Titular : <{self.__titular}>, Saldo: {self.__saldo}, Viajes: {self.__viajes_realizados}"
+        
+        
